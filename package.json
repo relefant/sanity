@@ -35,7 +35,8 @@
     "release-notes": "node scripts/printReleaseNotesTemplate.js",
     "versions": "node scripts/normalizeDependencyVersions.js",
     "normalize-pkgfields": "node scripts/normalizePackageFields.js",
-    "prettify": "lerna run clean && prettier --write \"**/*.js\""
+    "prettify": "lerna run clean && prettier --write \"**/*.js\"",
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
