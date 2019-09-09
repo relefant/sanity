@@ -1,9 +1,13 @@
-// @flow
-import type {Node} from './types'
+import {Node} from './types'
 import {debug} from './utils/debug'
 import arrayify from './utils/arrayify'
 
-function matchPath(node: Node, path: string): ?{[key: string]: string} {
+function matchPath(
+  node: Node,
+  path: string
+): {
+  [key: string]: string
+} | null {
   const parts = path.split('/').filter(Boolean)
   const segmentsLength = node.route.segments.length
   if (parts.length < segmentsLength) {
@@ -44,7 +48,7 @@ function matchPath(node: Node, path: string): ?{[key: string]: string} {
   return node.scope ? {[node.scope]: mergedState} : mergedState
 }
 
-export default function resolveStateFromPath(node: Node, path: string): ?Object {
+export default function resolveStateFromPath(node: Node, path: string): Object | null {
   debug('resolving state from path %s', path)
 
   const pathMatch = matchPath(node, path.split('?')[0])

@@ -1,22 +1,21 @@
-// @flow
-import React from 'react'
+import React, {MouseEvent} from 'react'
 import {omit} from 'lodash'
-import type {RouterProviderContext} from './types'
+import {RouterProviderContext} from './types'
 import internalRouterContextTypeCheck from './internalRouterContextTypeCheck'
 
-function isLeftClickEvent(event: SyntheticMouseEvent<*>) {
+function isLeftClickEvent(event: MouseEvent) {
   return event.button === 0
 }
 
-function isModifiedEvent(event: SyntheticMouseEvent<*>) {
+function isModifiedEvent(event: MouseEvent) {
   return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey)
 }
 
-export default class Link extends React.PureComponent<*, *> {
+export default class Link extends React.PureComponent<any, any> {
   props: {
-    replace?: boolean,
-    onClick?: (event: SyntheticMouseEvent<*>) => void,
-    href: string,
+    replace?: boolean
+    onClick?: (event: MouseEvent) => void
+    href: string
     target?: string
   }
 
@@ -31,7 +30,7 @@ export default class Link extends React.PureComponent<*, *> {
     __internalRouter: internalRouterContextTypeCheck
   }
 
-  handleClick = (event: SyntheticMouseEvent<*>): void => {
+  private handleClick = (event: MouseEvent): void => {
     if (!this.context.__internalRouter) {
       return
     }
@@ -66,7 +65,7 @@ export default class Link extends React.PureComponent<*, *> {
     }
   }
 
-  setElement = (element: ?HTMLAnchorElement) => {
+  setElement = (element: HTMLAnchorElement | null) => {
     if (element) {
       this._element = element
     }

@@ -1,9 +1,8 @@
-// @flow
-import type {Route, Segment} from './types'
+import {Route, Segment} from './types'
 
 const VALID_PARAM_SEGMENT = /^[a-zA-Z0-9_-]+$/
 
-function createSegment(segment: string): ?Segment {
+function createSegment(segment: string): Segment | null {
   if (!segment) {
     return null
   }

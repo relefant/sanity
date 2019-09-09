@@ -1,14 +1,13 @@
-// @flow
 import React from 'react'
 import Link from './Link'
-import type {RouterProviderContext} from './types'
+import {RouterProviderContext} from './types'
 import internalRouterContextTypeCheck from './internalRouterContextTypeCheck'
 
 const EMPTY_STATE = {}
 
-export default class StateLink extends React.PureComponent<*, *> {
+export default class StateLink extends React.PureComponent<any, any> {
   props: {
-    state?: Object,
+    state?: Object
     toIndex?: boolean
   }
   context: RouterProviderContext
@@ -57,7 +56,7 @@ export default class StateLink extends React.PureComponent<*, *> {
     }
   }
 
-  setElement = (element: ?Link) => {
+  setElement = (element: Link | null) => {
     if (element) {
       this._element = element
     }

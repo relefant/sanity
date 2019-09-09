@@ -1,4 +1,3 @@
-// @flow
 import hasOwn from './hasOwn'
 
 export default function isEmpty(object: Object): boolean {

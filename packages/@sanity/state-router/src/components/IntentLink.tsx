@@ -1,15 +1,13 @@
-// @flow
 import React from 'react'
-import type {Node} from 'react'
 import Link from './Link'
-import type {RouterProviderContext} from './types'
+import {RouterProviderContext} from './types'
 import internalRouterContextTypeCheck from './internalRouterContextTypeCheck'
 
-export default class IntentLink extends React.PureComponent<*, *> {
+export default class IntentLink extends React.PureComponent<any, any> {
   props: {
-    intent: string,
-    params?: Object,
-    children: Node,
+    intent: string
+    params?: Object
+    children: React.ReactChildren
     className: string
   }
 
@@ -27,7 +25,7 @@ export default class IntentLink extends React.PureComponent<*, *> {
     }
   }
 
-  setElement = (element: ?Link) => {
+  setElement = (element: Link | null) => {
     if (element) {
       this._element = element
     }

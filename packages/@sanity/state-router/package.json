@@ -29,6 +29,7 @@
     "nano-pubsub": "^1.0.2"
   },
   "devDependencies": {
+    "@types/react": "^16.3",
     "browserify": "^14.3.0",
     "error-capture-middleware": "0.0.2",
     "express": "^4.16.1",

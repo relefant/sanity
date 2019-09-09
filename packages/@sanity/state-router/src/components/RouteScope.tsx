@@ -1,10 +1,8 @@
-// @flow
 import PropTypes from 'prop-types'
 import React from 'react'
 import isEmpty from '../utils/isEmpty'
 
-import type {Node} from 'react'
-import type {RouterProviderContext, NavigateOptions, InternalRouter} from './types'
+import {RouterProviderContext, NavigateOptions, InternalRouter} from './types'
 
 function addScope(routerState: Object, scope: string, scopedState: Object) {
   return (
@@ -16,20 +14,21 @@ function addScope(routerState: Object, scope: string, scopedState: Object) {
 }
 
 type Props = {
-  scope: string,
-  children: Node
+  scope: string
+  children: React.ReactChildren
 }
 
-export default class RouteScope extends React.Component<*, *> {
+export default class RouteScope extends React.Component<any, any> {
   props: Props
+  context: RouterProviderContext
   __internalRouter: InternalRouter
 
-  static childContextTypes = (RouteScope.contextTypes = {
+  static childContextTypes = {
     __internalRouter: PropTypes.object
-  })
+  }
 
   constructor(props: Props, context: RouterProviderContext) {
-    super()
+    super(props)
     const parentInternalRouter = context.__internalRouter
 
     this.__internalRouter = {

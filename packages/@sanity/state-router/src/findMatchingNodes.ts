@@ -1,5 +1,4 @@
-// @flow
-import type {Node, MatchResult} from './types'
+import {Node, MatchResult} from './types'
 import {difference, intersection, pick} from 'lodash'
 import arrayify from './utils/arrayify'
 
@@ -7,7 +6,7 @@ function createMatchResult(nodes: Node[], missing: string[], remaining: string[]
   return {nodes, missing, remaining}
 }
 
-export default function findMatchingRoutes(node: Node, _state: ?Object): MatchResult {
+export default function findMatchingRoutes(node: Node, _state: Object | null): MatchResult {
   if (_state === null || _state === undefined) {
     return createMatchResult([], [], [])
   }

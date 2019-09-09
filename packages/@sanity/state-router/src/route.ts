@@ -1,5 +1,4 @@
-// @flow
-import type {Transform, Router, RouteChildren} from './types'
+import {Transform, Router, RouteChildren} from './types'
 
 import parseRoute from './parseRoute'
 import resolveStateFromPath from './resolveStateFromPath'
@@ -7,9 +6,11 @@ import resolvePathFromState from './resolvePathFromState'
 import {decodeParams, encodeParams} from './utils/paramsEncoding'
 
 type NodeOptions = {
-  path?: string,
-  children?: RouteChildren,
-  transform?: {[key: string]: Transform<*>},
+  path?: string
+  children?: RouteChildren
+  transform?: {
+    [key: string]: Transform<any>
+  }
   scope?: string
 }
 
@@ -24,6 +25,7 @@ function isRoute(val?: NodeOptions | Router | RouteChildren) {
   return val && '_isRoute' in val
 }
 
+function normalizeArgs(...args: any[]): NodeOptions
 function normalizeArgs(
   path: string | NodeOptions,
   childrenOrOpts?: NodeOptions | Router | RouteChildren,
@@ -117,7 +119,7 @@ function createNode(options: NodeOptions): Router {
     getBasePath(): string {
       return this.encode(EMPTY_STATE)
     },
-    getRedirectBase(pathname: string): ?string {
+    getRedirectBase(pathname: string): string | null {
       if (isRoot(pathname)) {
         const basePath = this.getBasePath()
         // Check if basepath is something different than given

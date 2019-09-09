@@ -1,8 +1,7 @@
-// @flow
 import React from 'react'
 import internalRouterContextTypeCheck from './internalRouterContextTypeCheck'
-import type {Router, InternalRouter} from './types'
-import type {ComponentType} from 'react'
+import {Router, InternalRouter} from './types'
+import {ComponentType} from 'react'
 
 type State = {
   routerState: Object
@@ -19,15 +18,11 @@ const NO_CONTEXT_STATE = {
     throw new Error(`Cannot navigate to the intent ${intentName}. No router found in context`)
   }
 }
-
-export default function withRouter<Props: {}>(
-  Component: ComponentType<{router: Router} & Props>
-): ComponentType<Props> {
-  return class extends React.Component<*, *> {
+type ChildProps<OuterProps> = OuterProps & {router: Router}
+export default function withRouter<OuterProps>(Component: ComponentType<ChildProps<OuterProps>>) {
+  return class WithRouter extends React.Component<OuterProps, State> {
     static displayName = `withRouter(${Component.displayName || Component.name})`
     unsubscribe: () => void
-    state: State
-
     state = {
       routerState: {}
     }
@@ -41,7 +36,7 @@ export default function withRouter<Props: {}>(
     }
 
     constructor(props, context) {
-      super()
+      super(props)
       const __internalRouter = context.__internalRouter
       if (__internalRouter) {
         this.state = {routerState: __internalRouter.getState()}
@@ -75,5 +70,5 @@ export default function withRouter<Props: {}>(
 
       return <Component {...this.props} router={router} />
     }
-  };
+  }
 }
