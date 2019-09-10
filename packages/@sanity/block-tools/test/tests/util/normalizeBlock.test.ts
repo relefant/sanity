@@ -12,22 +12,18 @@ describe('normalizeBlock', () => {
         }
       ]
     }
-    assert.deepEqual(
-      normalizeBlock(block),
-
-      {
-        _key: 'randomKey0',
-        _type: 'block',
-        children: [
-          {
-            _key: 'randomKey00',
-            _type: 'span',
-            marks: [],
-            text: 'Foobar'
-          }
-        ],
-        markDefs: []
-      }
-    )
+    assert.deepEqual(normalizeBlock(block), {
+      _key: 'randomKey0',
+      _type: 'block',
+      children: [
+        {
+          _key: 'randomKey00',
+          _type: 'span',
+          marks: [],
+          text: 'Foobar'
+        }
+      ],
+      markDefs: []
+    })
   })
 })

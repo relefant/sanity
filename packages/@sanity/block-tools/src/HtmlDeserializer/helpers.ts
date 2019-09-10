@@ -11,7 +11,6 @@ import preprocessors from './preprocessors'
  * @param {Object} The compiled schema type for the block content
  * @return {Object}
  */
-
 export function createRuleOptions(blockContentType) {
   const features = blockContentTypeFeatures(blockContentType)
   const mapItem = item => item.value
@@ -31,7 +30,6 @@ export function createRuleOptions(blockContentType) {
  * @param {Object} DOMParser element
  * @return {String} Lowercase tagName for that element
  */
-
 export function tagName(el) {
   if (!el || el.nodeType !== 1) {
     return undefined
@@ -58,7 +56,6 @@ export function preprocess(html, parseHtml, evaluate) {
  * @param {String} html
  * @return {Object}
  */
-
 export function defaultParseHtml() {
   if (resolveJsType(DOMParser) === 'undefined') {
     throw new Error(

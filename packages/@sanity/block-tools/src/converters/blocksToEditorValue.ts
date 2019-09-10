@@ -74,7 +74,11 @@ function sanitySpanToRawSlateBlockNode(span, sanityBlock, blockContentFeatures, 
     marks: uniq(decorators.concat(annotationKeys).filter(Boolean)).map(toRawMark)
   }
   if (!annotations) {
-    return {object: 'text', leaves: [leaf], key: `${sanityBlock._key}${childIndex()}`}
+    return {
+      object: 'text',
+      leaves: [leaf],
+      key: `${sanityBlock._key}${childIndex()}`
+    }
   }
 
   const spanKey = `${sanityBlock._key}${childIndex()}`
@@ -97,8 +101,9 @@ function sanityBlockToRawNode(sanityBlock, blockContentFeatures, options = {}) {
   }
   let restData = {}
   if (hasKeys(rest)) {
-    restData = {data: {_type, _key: sanityBlock._key, ...rest}}
-    // Check if we should allow listItem if present
+    restData = {
+      data: {_type, _key: sanityBlock._key, ...rest} // Check if we should allow listItem if present
+    }
     const {listItem} = restData.data
     if (listItem && !blockContentFeatures.lists.find(list => list.value === listItem)) {
       delete restData.data.listItem
