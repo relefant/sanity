@@ -22,6 +22,8 @@ let _markDefs = []
  *
  */
 export default class HtmlDeserializer {
+  rules: any[]
+  parseHtml: (html: string) => any
   /**
    * Create a new serializer respecting a Sanity block content type's schema
    *
@@ -34,7 +36,7 @@ export default class HtmlDeserializer {
    *      API compatible model as returned from DOMParser for using server side.
    */
 
-  constructor(blockContentType, options = {}) {
+  constructor(blockContentType, options: any = {}) {
     const {rules = []} = options
     if (!blockContentType) {
       throw new Error("Parameter 'blockContentType' is required")

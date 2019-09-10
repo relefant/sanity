@@ -26,7 +26,7 @@ export function resolveListItem(listNodeTagName) {
   return listStyle
 }
 
-export default function createHTMLRules(blockContentType, options = {}) {
+export default function createHTMLRules(blockContentType, options: any = {}) {
   return [
     // Text nodes
     {

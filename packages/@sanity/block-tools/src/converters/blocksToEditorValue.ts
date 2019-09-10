@@ -94,12 +94,12 @@ function sanitySpanToRawSlateBlockNode(span, sanityBlock, blockContentFeatures, 
 }
 
 // Block type object
-function sanityBlockToRawNode(sanityBlock, blockContentFeatures, options = {}) {
+function sanityBlockToRawNode(sanityBlock, blockContentFeatures, options: any = {}) {
   const {children, _type, markDefs, ...rest} = sanityBlock
   if (!sanityBlock._key) {
     sanityBlock._key = randomKey(12)
   }
-  let restData = {}
+  let restData: any = {}
   if (hasKeys(rest)) {
     restData = {
       data: {_type, _key: sanityBlock._key, ...rest} // Check if we should allow listItem if present
@@ -165,7 +165,7 @@ function sanityBlockItemToRawNode(blockItem, type, blockContentFeatures, options
 
   return blockItemType === 'block'
     ? sanityBlockToRawNode(blockItem, blockContentFeatures, options)
-    : sanityBlockItemToRaw(blockItem, blockContentFeatures, options)
+    : sanityBlockItemToRaw(blockItem, blockContentFeatures)
 }
 
 function sanityBlocksArrayToRawNodes(blockArray, type, blockContentFeatures, options = {}) {

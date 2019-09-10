@@ -93,7 +93,7 @@ function toSanityBlock(block, blockContentFeatures, options = {}) {
         toSanitySpan(node, sanityBlock, spanIndex, blockContentFeatures, options)
       )
     )
-    sanityBlock.markDefs = uniqBy(sanityBlock.markDefs, def => def._key)
+    sanityBlock.markDefs = uniqBy(sanityBlock.markDefs, def => (def as any)._key)
     return sanityBlock
   }
 
